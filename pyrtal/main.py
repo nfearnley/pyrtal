@@ -1,25 +1,34 @@
 import arcade
 
+from pyrtal.views.duncan import DuncanView
+from pyrtal.views.natalie import NatalieView
+
+from .views.menu import MenuView
+
+
+SCREEN_WIDTH = 720
+SCREEN_HEIGHT = 960
+SCREEN_TITLE = "Pyrtal"
+
 
 class MyGame(arcade.Window):
     def __init__(self):
-        SCREEN_WIDTH = 1920
-        SCREEN_HEIGHT = 1080
-        SCREEN_TITLE = "Pyrtal"
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
-        arcade.set_background_color(arcade.color.AIR_SUPERIORITY_BLUE)
+        self.menu_view = MenuView()
+        self.duncan_view = DuncanView()
+        self.natalie_view = NatalieView()
 
     def setup(self):
-        pass
+        self.menu_view.setup()
+        self.show_view(self.menu_view)
 
-    def on_draw(self):
-        arcade.start_render()
 
 def main():
     window = MyGame()
     window.setup()
     arcade.run()
+
 
 if __name__ == "__main__":
     main()
